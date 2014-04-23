@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="panel panel-default">
+
+        <!-- Filter -->
+        <div class="panel-heading">Contacts</div>
+        <div class="panel-body">
+            <p>Filter me:</p>
+
+            <select name="selectedTag" ng-model="tagId" ng-options="t.id as t.name for t in tags" ng-change="loadContacts(true)">
+                <option value="">-- choose tag --</option>
+            </select>
+
+        </div>
+
+        <!-- Table -->
+        <table class="table">
+            <tr ng-repeat="contact in contacts">
+                <td>{{contact.firstName}}</td>
+                <td>{{contact.lastName}}</td>
+                <td>{{contact.email}}</td>
+                <td>{{contact.tagName}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Handle paging -->
+    <ul class="pager">
+        <button type="button"
+                ng-click="changePage(-1)"
+                class="btn btn-default btn-lg pull-left"
+                ng-class="{disabled: currentPage == 0}">&larr; Previous Page</button>
+
+            Displaying Page {{currentPage + 1}} / {{numPages}}  -  {{contactCount}} total records found
+
+        <button type="button"
+                ng-click="changePage(1)"
+                class="btn btn-default btn-lg pull-right"
+                ng-class="{disabled: (currentPage + 1) == numPages}">Next Page &rarr;</button>
+    </ul>
+
+</div>

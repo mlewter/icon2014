@@ -1,0 +1,17 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Authentication related endpoints
+GET        /                    controllers.Assets.at(path="/public", file="index.html")
+GET        /signin-url          controllers.Application.getSignInUrl()
+GET        /authorize           controllers.Application.authorize(scope: String, code: String)
+GET        /token               controllers.Application.token(code: String)
+
+# Data endpoints
+GET        /contactCount        controllers.Application.getCountOfContactsForTag(oAuthToken: String, tagId: String)
+GET        /contacts            controllers.Application.getContactsForTag(oAuthToken: String, tagId: String, page: Integer)
+GET        /tags                controllers.Application.getTags(oAuthToken: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET        /assets/*file        controllers.Assets.at(path="/public", file)
