@@ -1,4 +1,32 @@
-This is your new Play application
+ICON 2014 Demo App
 =====================================
 
-This file will be packaged with your application, when using `play dist`.
+This application demonstrates an OAuth2.0 flow and simple calls against the Infusionsoft API.
+
+It was built with:
+
+    Play Framework (www.playframework.com) - a scalable Java framework
+    AngularJS (angularjs.org) - javascript framework
+    YAIL (https://bitbucket.org/dietsoda/yail) - a Java SDK for the Infusionsoft API
+
+It is only necessary to install Play Framework in order to run this application
+
+    1.  Install Play Framework
+    2.  Fork the source
+    3.  Update both the oauth.client.id & oauth.client.secret values in application.conf
+    4.  Navigate to your icon2014 project directory
+    5.  Compile the application: 'play compile'
+    6.  Start the application using SSL: 'JAVA_OPTS=-Dhttps.port=9443 play run'
+    7.  Navigate to https://<your local host>:9443/
+
+*Please note:  you cannot use localhost as your domain.  Not sure what to do?
+
+    For OSX, have a look at /private/etc/hosts
+    For Windows, it might be c:\WINDOWS\system32\drivers\etc\hosts (I recommend asking google)
+
+
+
+
+
+
+
