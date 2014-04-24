@@ -24,6 +24,10 @@ It is only necessary to install Play Framework in order to run this application
     For OSX, have a look at /private/etc/hosts
     For Windows, it might be c:\WINDOWS\system32\drivers\etc\hosts (I recommend asking google)
 
+*WARNING:  This examples in this app are not intended for production use - but to demonstrate some of the
+           concepts that were discussed during my ICON14 session.
+
+
 
 
 
