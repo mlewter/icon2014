@@ -19,6 +19,7 @@ import play.libs.Json;
 import play.libs.WS;
 import play.mvc.*;
 
+import javax.annotation.Nullable;
 import java.util.concurrent.Callable;
 
 public class Application extends Controller {
@@ -33,7 +34,7 @@ public class Application extends Controller {
     public static String TOKEN_URI = "https://api.infusionsoft.com/token";
     public static String RESPONSE_TYPE = "code";
     public static String REQUEST_SCOPE = "full";
-    public static int CACHE_DURATION_IN_SECONDS = 60;
+    public static int CACHE_DURATION_IN_SECONDS = 7200;
 
     /**
      * Returns the Infusionsoft OAuth sign-in URL
@@ -68,11 +69,15 @@ public class Application extends Controller {
      * @param code
      * @return
      */
-    public static Result authorize(String scope, String code) {
+    public static Result authorize(String scope, String code, String state, String error) {
         /* redirect back to the client so that he can do what he needs to do w/ the token */
         String url = "https://mattlmbp:9443/#/oauth_orize?";
         url += "scope=" + scope;
         url += "&code=" + code;
+
+        if(error != null) {
+            url += "&error=" + error;
+        }
 
         return redirect(url);
     }

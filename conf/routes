@@ -5,7 +5,7 @@
 # Authentication related endpoints
 GET        /                    controllers.Assets.at(path="/public", file="index.html")
 GET        /signin-url          controllers.Application.getSignInUrl()
-GET        /authorize           controllers.Application.authorize(scope: String, code: String)
+GET        /authorize           controllers.Application.authorize(scope ?= null, code ?= null, state ?= null, error ?= null)
 GET        /token               controllers.Application.token(code: String)
 
 # Data endpoints

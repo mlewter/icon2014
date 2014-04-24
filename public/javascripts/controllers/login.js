@@ -58,19 +58,23 @@ angular.module('icon2014').controller('LoginCtrl', function($scope, $rootScope, 
                 /* close that pop-up, we don't need him anymore */
                 popup.close();
 
-                $http.get("https://mattlmbp:9443/token?code=" + event.data.code)
-                    .success(function(data, status, headers, config) {
-                        /* yay! let's save this guy for later */
-                        UserService.setAuthToken(data.icon2014Token);
+                /* move forward only if there was no error */
+                if(!event.data.error) {
+                    $http.get("https://mattlmbp:9443/token?code=" + event.data.code)
+                        .success(function(data, status, headers, config) {
+                            /* yay! let's save this guy for later */
+                            UserService.setAuthToken(data.icon2014Token);
 
-                        /* ...and then go have some fun with the api */
-                        $location.path('/main');
+                            /* ...and then go have some fun with the api */
+                            $location.path('/main');
 
-                    }).
-                    error(function(data, status, headers, config) {
-                        /* awesome error handling */
-                        $location.path('/');
-                    });
+                        }).
+                        error(function(data, status, headers, config) {
+                            /* awesome error handling */
+                            $location.path('/');
+                        }
+                    );
+                }
             }
         }, false);
     }
