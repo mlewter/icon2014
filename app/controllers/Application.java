@@ -23,14 +23,16 @@ import java.util.concurrent.Callable;
 
 public class Application extends Controller {
 
-    /* you'll want to move these into a properties file, ala build.properties */
-    public static String CLIENT_ID = "va4mbf37dzknudx98hekekzf";
+    /* pull these from a properties file */
+    public static String CLIENT_ID = Play.application().configuration().getString("oauth.client.id");
+    public static String CLIENT_SECRET = Play.application().configuration().getString("oauth.client.secret");
+
+    /* this stuff won't change */
     public static String SIGN_IN_URI = "https://signin.infusionsoft.com/app/oauth/authorize?";
     public static String REDIRECT_URI = "https://mattlmbp:9443/authorize";
+    public static String TOKEN_URI = "https://api.infusionsoft.com/token";
     public static String RESPONSE_TYPE = "code";
     public static String REQUEST_SCOPE = "full";
-
-    public static String TOKEN_URI = "https://api.infusionsoft.com/token";
     public static int CACHE_DURATION_IN_SECONDS = 60;
 
     /**
@@ -83,7 +85,7 @@ public class Application extends Controller {
      */
     public static F.Promise<Result> token(String code) {
         /* encode our Base Authentication - for the Authentication header */
-        final String baseAuth = "Basic " + Base64.encode("va4mbf37dzknudx98hekekzf:MEHFw3BusK".getBytes());
+        final String baseAuth = "Basic " + Base64.encode(new String(CLIENT_ID + ":" + CLIENT_SECRET).getBytes());
 
         /* what are we posting?  This: */
         final StringBuilder content = new StringBuilder();
